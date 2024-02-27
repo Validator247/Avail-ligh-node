@@ -1,35 +1,41 @@
 # Avail-ligh-node
 
-package
+1.
 
-    sudo apt-get update
-    sudo apt-get install build-essential
+        sudo apt update && sudo apt upgrade -y
+        sudo apt-get install make clang pkg-config libssl-dev build-essential
 
+2 
 
-    
-Install rustup 
+        wget https://github.com/availproject/avail-light/releases/download/v1.7.9/avail-light-linux-amd64.tar.gz
+        tar -xvzf avail-light-linux-amd64.tar.gz
+        mv avail-light-linux-amd64 avail-light
+        rm -rf avail-light-linux-amd64.tar.gz
 
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+3 
 
-        
-estart your terminal or run:
+        sudo tee /etc/systemd/system/availd.service > /dev/null <<EOF
+        [Unit]
+        Description=Avail Light Client
+        After=network.target
+        StartLimitIntervalSec=0
+        [Service]
+        User=root
+        ExecStart=/root/avail-light --network goldberg
+        Restart=always
+        RestartSec=120
+        [Install]
+        WantedBy=multi-user.target
+        EOF
 
-    source $HOME/.cargo/env
+4  
 
-Verify that cargo
+        sudo systemctl daemon-reload
+        systemctl enable availd
+        sudo systemctl restart availd
 
-    cargo --version
+5 
 
-Clone the repository:
+        journalctl -u availd -f
 
-    git clone https://github.com/availproject/avail-light.git
-
-Move into copied folder:
-
-    cd avail-light
-
-Building light clients:
-
-    cargo build --release
-
-Waitting.....            
+         
