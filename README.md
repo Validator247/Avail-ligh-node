@@ -38,5 +38,10 @@
 
         journalctl -u availd -f
 
+6  Get the wallet and seed, save it
+
+                cd $HOME
+                nano /identity.toml
+
          
 Add file Config : Waiting........
