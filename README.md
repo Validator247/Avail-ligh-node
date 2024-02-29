@@ -39,3 +39,4 @@
         journalctl -u availd -f
 
          
+Add file Config : Waiting........
