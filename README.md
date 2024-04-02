@@ -14,19 +14,20 @@
 
 3 
 
-        sudo tee /etc/systemd/system/availd.service > /dev/null <<EOF
-        [Unit]
-        Description=Avail Light Client
-        After=network.target
-        StartLimitIntervalSec=0
-        [Service]
-        User=root
-        ExecStart=/root/avail-light --network goldberg
-        Restart=always
-        RestartSec=120
-        [Install]
-        WantedBy=multi-user.target
-        EOF
+       sudo tee /etc/systemd/system/availd.service > /dev/null <<EOF
+       [Unit]
+       Description=Avail Light Client
+       After=network.target
+       StartLimitIntervalSec=0
+       [Service]
+       User=root
+       ExecStart=/root/avail-light --network goldberg
+       Restart=always
+       RestartSec=120
+       [Install]
+       WantedBy=multi-user.target
+       EOF
+
 
 4  
 
@@ -43,5 +44,5 @@
                 cd $HOME
                 nano /identity.toml
 
-         
+                
 Add file Config : Waiting........
